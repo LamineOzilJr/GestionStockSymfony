@@ -1,0 +1,45 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Ajout des produits{% endblock %}
+
+{% block body %}
+    <div class="row">
+    <div class='container col-md-6'>
+        <div class="card">
+            <div class="card-header">Liste des produits</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Libelle</th>
+                        <th>Categorie</th>
+                        <th>Qunatite en Stock</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    
+                    {% for p in produitfs %} 
+                        <tr>
+                            <td> {{ p.id }} </td>
+                            <td> {{ p.libelle }} </td>
+                            <td> {{ p.categorie }} </td>
+                            <td> {{ p.qtStock }} </td>
+                            <td><a href="{{ path('produitf_edit', { 'id': p.id }) }}" class="btn btn-info ", > Editer </a></td>
+                            <td><a href="{{ path('produitf_delete', { 'id': p.id }) }}" class="btn btn-warning"> Archiver </a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class='container col-md-6'>
+         <div class="card">
+            <div class="card-header">Formulaire de gestion produits Isi-shop THIES</div>
+            <div class="card-body">
+                {{ form(form) }}
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

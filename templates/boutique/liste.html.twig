@@ -1,0 +1,43 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Ajout des Botiques{% endblock %}
+
+{% block body %}
+    <div class="row">
+    <div class='container col-md-6'>
+        <div class="card">
+            <div class="card-header">Liste des Boutiques</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    
+                    {% for b in boutiques %} 
+                        <tr>
+                            <td> {{ b.id }} </td>
+                            <td> {{ b.nom }} </td>
+                            <td> {{ b.adresse }} </td>
+                            <td><a href="{{ path('boutique_edit', { 'id': b.id }) }}" class="btn btn-info "> Editer </a></td>
+                            <td><a href="{{ path('boutique_delete', { 'id':b.id }) }}" class="btn btn-warning"> Archiver </a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class='container col-md-6'>
+         <div class="card">
+            <div class="card-header">Formulaire d'ajout d'une Boutique</div>
+            <div class="card-body">
+                {{ form(form) }}
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

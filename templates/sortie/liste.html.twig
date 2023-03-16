@@ -1,0 +1,52 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des Sorties{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class='container col-md-6'>
+        <div class="card">
+            <div class="card-header">Liste des sorties</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Date</th>
+                        <th>Categorie</th>
+                        <th>Qunatite Sortie</th>
+                        <th>Produit</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    
+                    {% for s in sorties %} 
+                        <tr>
+                            <td> {{ s.id }} </td>
+                            <td> {{ s.dateS|date('d/m/y') }} </td>
+                            <td> {{ s.categorie }} </td>
+                            <td> {{ s.qtS }} </td>
+                            <td> {{ s.produit }} </td>
+                            <td><a href="{{ path('sortie_edit', { 'id': s.id }) }}" class="btn btn-info"> Editer </a></td>
+                            <td><a href="{{ path('sortie_delete', { 'id': s.id }) }}" class="btn btn-warning"> Archiver </a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class='container col-md-6'>
+         <div class="card">
+            <div class="card-header">Formulaire de gestion des sorties GT</div>
+            <div class="card-body">
+
+                {% if error_message is defined %}
+                    <div class="alert alert-danger"> {{ error_message }} </div>
+                {% endif %}
+                {{ form(form) }}
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

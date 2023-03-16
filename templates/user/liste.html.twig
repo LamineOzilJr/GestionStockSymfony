@@ -1,0 +1,64 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des Utilisateurs {% endblock %}
+
+{% block body %} 
+
+    <div class="row">
+    <div class='container col-md-6'>
+        <div class="card">
+            <div class="card-header">Liste des Utilisateurs</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        {# <th>Mot de passe</th> #}
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                        
+                    </tr>
+                    
+                    {% for u in users %} 
+                        <tr>
+                            <td> {{ u.id }} </td>
+                            <td> {{ u.email }} </td>
+                            <td> {{ u.roles[0] }} </td>
+                            {# <td> {{ u.password }} </td> #}
+                            <td> {{ u.nom }} </td>
+                            <td> {{ u.prenom }} </td>
+                            <td><a href="" class="btn btn-info"> Editer </a></td>
+                            <td><a href="" class="btn btn-warning"> Supprimer </a></td>
+                            {# <td><a href="{{ path('user_edit', { 'id': u.id }) }}" class="btn btn-info"> Editer </a></td>
+                            <td><a href="{{ path('user_delete', { 'id': u.id }) }}" class="btn btn-warning"> Supprimer </a></td> #}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class='container col-md-6'>
+         <div class="card">
+            <div class="card-header">Formulaire de gestion des Utilisateurs</div>
+            <div class="card-body">
+                {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.roles) }}
+        {{ form_row(form.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(form.agreeTerms) }}
+
+        <button type="submit" class="btn btn-success">Register</button>
+        {{ form_end(form) }}
+            </div>
+        </div>
+        </div>
+    </div>
+
+ {% endblock %}
